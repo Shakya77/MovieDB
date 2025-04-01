@@ -44,7 +44,7 @@ function App() {
           onChange={(e) => setSearchBy(e.target.value)}
         >
           <option value="">Select a filter</option>
-          <option value="title" defaultChecked>Title</option>
+          <option value="title">Title</option>
           <option value="year">Year</option>
           <option value="rating">Rating</option>
           <option value="genre">Genre</option>
