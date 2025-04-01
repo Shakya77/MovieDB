@@ -5,7 +5,7 @@ import "./Movie.css";
 export default function Movie() {
 
     const [movieData, setMovieData] = useState("");
-    const url = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=2&include_adult=true";
+    const url = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=3&include_adult=true";
 
     const getMovies = async () => {
         const data = await fetch(url, {
@@ -22,6 +22,7 @@ export default function Movie() {
         getMovies()
     }, [])
 
+    console.log(movieData);
 
     return (
         <div className="movie-list">
