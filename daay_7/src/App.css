@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 20px 0;
+    font-size: 2rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+li {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+li:hover {
+    transform: scale(1.05);
+}
+
+/* Movie image */
+img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Overlay for hover effect */
+.movie-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show overlay and text on hover */
+li:hover .movie-overlay {
+    opacity: 1;
+}
+
+/* Movie title */
+.movie-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Movie rating */
+.movie-rating {
+    font-size: 1rem;
+    color: #ffcc00;
+    font-weight: bold;
+}
