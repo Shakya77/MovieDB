@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom'
 
 function MovieList() {
     const [movies, setMovies] = useState([]);
@@ -28,6 +29,11 @@ function MovieList() {
             })
             .catch((err) => setError(err.message));
     }, []);
+
+    const navigation = useNavigate();
+    const handleNavigate = (id) => {
+        navigation('/movies/' + id)
+    }
     return (
         <div>
             <h1>Popular Movies</h1>
@@ -40,7 +46,7 @@ function MovieList() {
                             alt={movie.title}
                         />
                         <div className="movie-overlay">
-                            <span className="movie-title">{movie.title}</span>
+                            <span className="movie-title" onClick={() => handleNavigate(movie.id)}>{movie.title}</span>
                             <span className="movie-rating">⭐ {movie.vote_average}</span>
                         </div>
                     </li>
