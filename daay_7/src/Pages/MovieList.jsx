@@ -38,15 +38,15 @@ function MovieList() {
         <div>
             <h1>Popular Movies</h1>
             {error && <p style={{ color: "red" }}>{error}</p>}
-            <ul>
+            <ul >
                 {movies.map((movie) => (
-                    <li key={movie.id}>
+                    <li key={movie.id} onClick={() => handleNavigate(movie.id)}>
                         <img
                             src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                             alt={movie.title}
                         />
                         <div className="movie-overlay">
-                            <span className="movie-title" onClick={() => handleNavigate(movie.id)}>{movie.title}</span>
+                            <span className="movie-title">{movie.title}</span>
                             <span className="movie-rating">⭐ {movie.vote_average}</span>
                         </div>
                     </li>
