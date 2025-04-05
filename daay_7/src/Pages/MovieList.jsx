@@ -5,9 +5,11 @@ import { Link, useNavigate } from 'react-router-dom'
 function MovieList() {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
+    const [favorites, setFavorites] = useState([]);
 
     const url =
         "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
+
     const options = {
         method: "GET",
         headers: {
@@ -35,25 +37,41 @@ function MovieList() {
     const handleNavigate = (id) => {
         navigation('/movies/' + id)
     }
+
+    const handleFavorite = (movie) => {
+        let updateFavourite;
+        const isMovieFavourite = favorites.some((fav) => fav.id === movie.id);
+        if (isMovieFavourite) {
+            updateFavourite = favorites.filter((fav) => fav.id !== movie.id);
+        } else {
+            updateFavourite = [...favorites, movie];
+        }
+        localStorage.setItem("favorites", JSON.stringify(updateFavourite));
+        setFavorites(updateFavourite);
+    }
+
     return (
         <div>
             <h1>Popular Movies</h1>
             {error && <p style={{ color: "red" }}>{error}</p>}
             <ul >
                 {movies.map((movie) => (
-                    <li key={movie.id} onClick={() => handleNavigate(movie.id)}>
-                        <img
-                            src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                            alt={movie.title}
-                        />
-                        <div className="movie-overlay">
-                            <span className="movie-title">{movie.title}</span>
-                            <span className="movie-rating">⭐ {movie.vote_average}</span>
-                        </div>
-                    </li>
+                    <div className="" key={movie.id}>
+                        <li onClick={() => handleNavigate(movie.id)}>
+                            <img
+                                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                                alt={movie.title}
+                            />
+                            <div className="movie-overlay">
+                                <span className="movie-title">{movie.title}</span>
+                                <span className="movie-rating">⭐ {movie.vote_average}</span>
+                            </div>
+                        </li>
+                        <button className="movie-rating" onClick={() => handleFavorite(movie)}>👍 Like</button>
+                    </div>
                 ))}
             </ul>
-        </div>
+        </div >
 
     )
 }
