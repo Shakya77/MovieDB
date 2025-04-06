@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import './Home.css'
 
 export default function Home() {
     const navigation = useNavigate();
@@ -9,9 +10,9 @@ export default function Home() {
     }
 
     return (
-        <div>
-            {/* <Link to='/movies'>Popular Movies</Link> */}
+        <div className='container'>
             <button onClick={handleNavigation}>Popular Movies</button>
+            <input type="text" placeholder="Search for a movie" />
         </div>
     )
 }
